@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-$marvel_characters_response = Http::get('https://gateway.marvel.com/v1/public/characters', 
-[
-    'apikey'=> '79b29ec0804b795cf3be8ecb0985fdb5',
-    'ts'=>1,
-    'hash'=>'ffd4fa489d420f37f34e7c46be4632d3'
-]);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-    //test whether the api returns data
-    //print_r($marvel_characters_response->json());
-    //yes it does, api works with given query parameters
+require __DIR__.'/auth.php';
