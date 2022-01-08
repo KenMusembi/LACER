@@ -14,12 +14,12 @@ class ExcelContentFactory extends Factory
     public function definition()
     {        
         return [
-            'invoiceNo' => 936365,
-            'stockCode' => '95123A',
-            'description' => 'This a testing product',
-            'quantity' => 3,
+            'invoiceNo' => 936367,
+            'stockCode' => '95123B',
+            'description' => 'This a second testing product',
+            'quantity' => 6,
             'invoiceDate' => now(),
-            'unitPrice' => 2.55,
+            'unitPrice' => 1.55,
             'customerID' => 17850,
             'country' => 'United Kingdom',
         ];

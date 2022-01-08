@@ -28,4 +28,18 @@ class ExcelContent extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    //for livewire search
+    public static function search($search)
+    {
+        return empty($search) ? static::query()
+            : static::query()->where('invoiceNo', 'like', '%'.$search.'%')
+                ->orWhere('stockCode', 'like', '%'.$search.'%')
+                ->orWhere('description', 'like', '%'.$search.'%')
+                ->orWhere('quantity', 'like', '%'.$search.'%')
+                ->orWhere('invoiceDate', 'like', '%'.$search.'%')
+                ->orWhere('unitPrice', 'like', '%'.$search.'%')
+                ->orWhere('customerID', 'like', '%'.$search.'%')
+                ->orWhere('country', 'like', '%'.$search.'%');
+    }
 }
