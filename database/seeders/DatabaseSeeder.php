@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        //uncomment to create 10 users for testing
         // \App\Models\User::factory(10)->create();
+        // \App\Models\ExcelContent::factory(1)->create();
     }
 }

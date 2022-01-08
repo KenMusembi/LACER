@@ -9,6 +9,18 @@ class ExcelContent extends Model
 {
     use HasFactory;
 
+    //
+    protected $fillable = [
+        'inviceNo',
+        'stockCode',
+        'description',
+        'quantity',
+        'invoiceDate',
+        'unitPrice',
+        'customerID',
+        'country',
+    ];
+
     //ensure only authorized users can access
     protected $guarded = [];
 
