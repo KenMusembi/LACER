@@ -9,7 +9,37 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
+                   
+                    
+
+            <x-table>
+                    <x-slot name=header>
+                        <x-table-column ></x-table-column>
+                        <x-table-column ></x-table-column>
+                        <x-table-column ></x-table-column>
+                        <x-table-column ></x-table-column>
+                       
+                    </x-slot>
+                    @foreach($marvel_characters as $data)
+                       
+                            <tr>
+                            
+                            <x-table-column><img src="
+                            {{ $data['thumbnail']['path'] }}.{{ $data['thumbnail']['extension'] }}
+                            " alt="">
+                                
+                            </x-table-column>    
+                           
+                            <x-table-column>{{$data['name']}}</x-table-column>
+                                <x-table-column>{{$data['description']}}</x-table-column>
+                                <x-table-column>
+                                <a class="btn btn-primary float-right" role="button" href="http://marvel.com">Read More</a>
+                                </x-table-column>
+                            </tr>
+                       
+                        @endforeach
+                </x-table>
+               
                 </div>
             </div>
         </div>

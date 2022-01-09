@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsOnError;
+use Maatwebsite\Excel\Concerns\SkipsFailures;
 use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\WithEvents;
@@ -20,7 +21,7 @@ class ExcelContentImport implements ToModel, WithHeadingRow,
 WithChunkReading, SkipsOnError , WithValidation, WithBatchInserts,
 ShouldQueue, withEvents
 {   
-    use Importable, SkipsErrors, RegistersEventListeners;
+    use Importable, SkipsErrors, SkipsFailures, RegistersEventListeners;
     
     /**
     * @param array $row
@@ -72,6 +73,10 @@ ShouldQueue, withEvents
     // public function startRow(): int
     // {
     //     return 2;
+    // }
+
+    // public function onFailure(Failure ...$failure){
+        
     // }
 
 }
