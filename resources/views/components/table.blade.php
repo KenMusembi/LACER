@@ -1,6 +1,6 @@
-<table class="w-full whitespace-nowrap">
-    <thead class="bg-gray-50 border-b-2 border-gray-200">
-        <tr class="text-left font-bold">
+<table class="table table-hover w-full whitespace-nowrap">
+    <thead class=" thead-dark">
+        <tr class=" thead-dark text-left font-bold">
             {{ $header }}
         </tr>
     </thead>

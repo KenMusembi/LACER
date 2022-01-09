@@ -15,7 +15,7 @@ class CreateExcelContentsTable extends Migration
     {
         Schema::create('excel_contents', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("invoiceNo");//536368
+            $table->string("invoiceNo");//536368
             $table->string( "stockCode");//85123A
             $table->string(  "description");
             $table->bigInteger(  "quantity");//2

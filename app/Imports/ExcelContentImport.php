@@ -12,11 +12,15 @@ use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsOnError;
 use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\WithValidation;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Concerns\RegistersEventListeners;
 use Throwable;
 
-class ExcelContentImport implements ToModel, WithHeadingRow,  WithChunkReading, SkipsOnError , WithValidation
+class ExcelContentImport implements ToModel, WithHeadingRow,  
+WithChunkReading, SkipsOnError , WithValidation, WithBatchInserts,
+ShouldQueue, withEvents
 {   
-    use Importable, SkipsErrors;
+    use Importable, SkipsErrors, RegistersEventListeners;
     
     /**
     * @param array $row
@@ -44,7 +48,7 @@ class ExcelContentImport implements ToModel, WithHeadingRow,  WithChunkReading, 
     //
     public function rules(): array{
         return [
-            '*.invoiceno' => ['integer', 'unique:excel_contents,InvoiceNo']
+           // '*.invoiceno' => ['string', 'unique:excel_contents,InvoiceNo']
         ];
     }    
 
@@ -52,6 +56,17 @@ class ExcelContentImport implements ToModel, WithHeadingRow,  WithChunkReading, 
     public function chunkSize(): int{
         return 5000;
     }
+
+    //batch size
+    public function batchSize(): int{
+        return 5000;
+    }
+
+    //event to be fired after import job
+    public static function afterimport(AfterImport $event){
+        //send notifications 
+    }
+    
 
     //skip header row
     // public function startRow(): int

@@ -1,46 +1,58 @@
 
 
-    <div class="py-12">
+   
+       <div class="py-12">    
     @if (session('status'))
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('status') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
         </div>
     @endif
     @if(isset($errors) && $errors->any())
-    <div class="alert alert-warning" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
        @foreach($errors->all() as $error)
             {{ $error }}
-       @endforeach
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+         @endforeach
     </div>
     @endif
-   
-       
-        <div class="row justify-content-center">                                               
-        <form action="/excelcontent/import" method="post" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group">
-                <input type="file" name="file"/>
-                <button type="submit" class="btn btn-primary">Import</button>
-            </div>
-        </form>
-        &nbsp
-        <a href="{{ url('excelcontent/export') }}"> Export </a>
-        </div>
-     
+          
+        
+        
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     
-
+                <div class="container"> 
+          
+          <div class="row justify-content-center">   
+              <div class="col-md-6">                               
+     <form  action="/excelcontent/import" method="post" enctype="multipart/form-data">
+         @csrf
+         <div class="form-group">
+        
+         <input  type="file" name="file"/>
+             <button type="submit" class="btn btn-primary">Import</button>
+         </div>
+     </form>       
+</div>
+<div class="col-md-6">  
+     <a class="btn btn-primary float-right" role="button" href="{{ url('excelcontent/export') }}">Export</a>
+</div>
+</div>
  
-                <div class="w-full flex pb-7">
+                <div class="row">
     
-    <div class="w-4/6 mx-1">
+    <div class="col-6">
                         <input wire:model.debounce.300ms="search" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"placeholder="Search users...">
                     </div>
         
-                    <div class="w-1/6 relative mx-1">            
+                    <div class="col-2">            
         <select wire:model="orderBy" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                 <option value="invoiceNo">Invoice Number</option>
                 <option value="stockCode">Stock Code</option>
@@ -53,30 +65,27 @@
             </select>            
         </div>
 
-        <div class="w-1/6 relative mx-1">
+        <div class="col-2">
             <select wire:model="orderAsc" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                 <option value="1">Ascending</option>
                 <option value="0">Descending</option>
             </select>           
         </div>
 
-        <div class="w-1/6 relative mx-1">
+        <div class="col-2">
             <select wire:model="perPage" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                 <option>10</option>
                 <option>25</option>
                 <option>50</option>
                 <option>100</option>
             </select>           
-        </div>
-
-       
-
+        </div>       
 </div>
 
 
                 <x-table>
                     <x-slot name=header>
-                        <x-table-column>Invoice Number</x-table-column>
+                        <x-table-column >Invoice Number</x-table-column>
                         <x-table-column>Stock Code</x-table-column>
                         <x-table-column>Description</x-table-column>
                         <x-table-column>Quantity</x-table-column>
@@ -105,4 +114,6 @@
             </div>
         </div>
     </div>
-
+<script>
+   $(".alert").alert('close')
+    </script>
