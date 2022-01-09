@@ -1,18 +1,21 @@
 
 
     <div class="py-12">
-
+    @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
+        </div>
+    @endif
     @if(isset($errors) && $errors->any())
-    <div class="alert alert-danger">
+    <div class="alert alert-warning" role="alert">
        @foreach($errors->all() as $error)
             {{ $error }}
        @endforeach
     </div>
     @endif
-    <div class="row ">
-            <a href="{{ url('excelcontent/export') }}"> Export </a>                                
-        
-
+   
+       
+        <div class="row justify-content-center">                                               
         <form action="/excelcontent/import" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
@@ -20,7 +23,11 @@
                 <button type="submit" class="btn btn-primary">Import</button>
             </div>
         </form>
+        &nbsp
+        <a href="{{ url('excelcontent/export') }}"> Export </a>
         </div>
+     
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
