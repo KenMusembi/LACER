@@ -4,29 +4,49 @@ namespace App\Imports;
 
 use App\Models\ExcelContent;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\Importable;
 
-class ExcelContentImport implements ToModel
-{
+
+class ExcelContentImport implements ToModel, WithHeadingRow,  WithChunkReading
+{   
+    use Importable;
+    
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+    
     public function model(array $row)
     {
+        //testing to see the array returned
+        //dd($row);
         return new ExcelContent([
             //
-            'invoiceNo' => $row[1],
-            'stockCode' => $row[2],
-            'description' => $row[3],
-            'quantity' => $row[4],
-            'invoiceDate' => $row[5],
-            'unitPrice' => $row[6],
-            'customerID' => $row[7],
-            'country' => $row[8]
+            'invoiceNo' => $row['invoiceno'],
+            'stockCode' => $row['stockcode'],
+            'description' => $row['description'],
+            'quantity' => $row['quantity'],
+            'invoiceDate' => $row['invoicedate'],
+            'unitPrice' => $row['unitprice'],
+            'customerID' => $row['customerid'],
+            'country' => $row['country']
         ]);
     }
 
     //chunck size
-    
+    public function chunkSize(): int{
+        return 5000;
+    }
+
+    //skip header row
+    // public function startRow(): int
+    // {
+    //     return 2;
+    // }
+
 }

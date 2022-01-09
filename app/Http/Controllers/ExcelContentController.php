@@ -30,9 +30,9 @@ class ExcelContentController extends Controller
     //method to import excel data
     public function store(Request $request){
         //downloading the excel file
-        $file = $request->file('file');
+        $file = $request->file('file')->store('import');
         
-        Excel::import(new ExcelContentImport, $file);
+        (new ExcelContentImport)->import($file);
 
         return back()->withStatus("Excel file imported succesfully!");
     }
