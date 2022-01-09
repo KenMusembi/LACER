@@ -1,7 +1,18 @@
 
 
     <div class="py-12">
-   
+    <div class="row ">
+            <a href="{{ url('excelcontent/export') }}"> Export </a>                                
+        
+
+        <form action="/excelcontent/import" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group">
+                <input type="file" name="file"/>
+                <button type="submit" class="btn btn-primary">Import</button>
+            </div>
+        </form>
+        </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -42,6 +53,8 @@
                 <option>100</option>
             </select>           
         </div>
+
+       
 
 </div>
 

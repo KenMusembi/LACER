@@ -3,18 +3,38 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Exports\ExcelContentExport;
+use App\Imports\ExcelContentImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ExcelContentController extends Controller
 {
     //
     public function index(){
-        //$excel_content = ExcelContent::where('id', 1)->latest()->get();
-        
-        //test if data is being returned
-        //return $excel_content;
-
-        //return the actual blade file
-        //return view('livewire.excel-content-table', compact('excel_content'));
+        //return the main index view
         return view('excelcontent.index');
     }
+
+    //method to export excel data
+    public function export(){
+        //downloading the excel file
+        return new ExcelContentExport;        
+    }
+
+    //method to import excel data
+    public function show(){
+        //downloading the excel file
+        return view('excelcontent.index');    
+    }
+
+    //method to import excel data
+    public function store(Request $request){
+        //downloading the excel file
+        $file = $request->file('file');
+        
+        Excel::import(new ExcelContentImport, $file);
+
+        return back()->withStatus("Excel file imported succesfully!");
+    }
 }
+ 

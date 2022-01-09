@@ -19,7 +19,7 @@ class CreateExcelContentsTable extends Migration
             $table->string( "stockCode");//85123A
             $table->string(  "description");
             $table->bigInteger(  "quantity");//2
-            $table->date("invoiceDate");//12/1/2010 8:26
+            $table->dateTime("invoiceDate");//12/1/2010 8:26
             $table->float(  "unitPrice");//2.55
             $table->bigInteger(  "customerID");//17850
             $table->string(  "country");//United Kingdom

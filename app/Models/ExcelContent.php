@@ -11,7 +11,7 @@ class ExcelContent extends Model
 
     //
     protected $fillable = [
-        'inviceNo',
+        'invoiceNo',
         'stockCode',
         'description',
         'quantity',
