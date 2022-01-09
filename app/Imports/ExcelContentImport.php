@@ -9,11 +9,14 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsOnError;
+use Maatwebsite\Excel\Concerns\SkipsErrors;
+use Maatwebsite\Excel\Concerns\WithValidation;
+use Throwable;
 
-
-class ExcelContentImport implements ToModel, WithHeadingRow,  WithChunkReading
+class ExcelContentImport implements ToModel, WithHeadingRow,  WithChunkReading, SkipsOnError , WithValidation
 {   
-    use Importable;
+    use Importable, SkipsErrors;
     
     /**
     * @param array $row
@@ -37,6 +40,13 @@ class ExcelContentImport implements ToModel, WithHeadingRow,  WithChunkReading
             'country' => $row['country']
         ]);
     }
+    
+    //
+    public function rules(): array{
+        return [
+            '*.invoiceno' => ['integer', 'unique:excel_contents,InvoiceNo']
+        ];
+    }    
 
     //chunck size
     public function chunkSize(): int{

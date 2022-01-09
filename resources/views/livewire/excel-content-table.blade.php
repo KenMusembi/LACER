@@ -1,6 +1,14 @@
 
 
     <div class="py-12">
+
+    @if(isset($errors) && $errors->any())
+    <div class="alert alert-danger">
+       @foreach($errors->all() as $error)
+            {{ $error }}
+       @endforeach
+    </div>
+    @endif
     <div class="row ">
             <a href="{{ url('excelcontent/export') }}"> Export </a>                                
         
