@@ -1,5 +1,4 @@
 
-
    
        <div class="py-12">    
     @if (session('status'))
@@ -20,9 +19,41 @@
          @endforeach
     </div>
     @endif
-          
-        
-        
+         
+    <div class="mb-4 d-flex justify-content-between">
+    <div>
+    <a wire:click="export" class="btn btn-outline-primary">Export</a>
+
+    @if($exporting && !$exportFinished)
+        <div class="d-inline" wire:poll="updateExportProgress">Exporting...please wait.</div>
+    @endif
+
+    @if($exportFinished)
+        Done. Download file <a class="stretched-link" wire:click="downloadExport">here</a>
+    @endif
+</div>                 
+    
+
+                        <div>
+    <form wire:submit.prevent="import" enctype="multipart/form-data">
+        @csrf
+        <input type="file" wire:model="importFile" class="@error('import_file') is-invalid @enderror">
+        <button class="btn btn-outline-secondary">Import</button>
+        @error('import_file')
+            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+        @enderror
+    </form>
+
+    @if($importing && !$importFinished)
+        <div wire:poll="updateImportProgress">Importing...please wait.</div>
+    @endif
+
+    @if($importFinished)
+        Finished importing.
+    @endif
+</div>
+                    </div>
+        <!-- -->
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -30,21 +61,7 @@
                     
                 <div class="container"> 
           
-          <div class="row justify-content-center">   
-              <div class="col-md-6">                               
-     <form  action="/excelcontent/import" method="post" enctype="multipart/form-data">
-         @csrf
-         <div class="form-group">
-        
-         <input  type="file" name="file"/>
-             <button type="submit" class="btn btn-primary">Import</button>
-         </div>
-     </form>       
-</div>
-<div class="col-md-6">  
-     <a class="btn btn-primary float-right" role="button" href="{{ url('excelcontent/export') }}">Export</a>
-</div>
-</div>
+  
  
                 <div class="row">
     
@@ -114,6 +131,3 @@
             </div>
         </div>
     </div>
-<script>
-   $(".alert").alert('close')
-    </script>
