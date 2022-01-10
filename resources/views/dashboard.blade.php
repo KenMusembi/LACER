@@ -30,7 +30,7 @@
         No description of this character is available available.
         </p> 
     @else
-         class="border px-6 py-5">{{$data['description']}}<br>        
+         {{$data['description']}}<br>        
     @endif
     <a class="btn btn-primary float-right" role="button" href="http://marvel.com">Read More</a>        
     </td>

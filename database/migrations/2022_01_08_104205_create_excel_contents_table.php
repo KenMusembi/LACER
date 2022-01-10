@@ -15,14 +15,14 @@ class CreateExcelContentsTable extends Migration
     {
         Schema::create('excel_contents', function (Blueprint $table) {
             $table->id();
-            $table->string("invoiceNo");//536368
-            $table->string( "stockCode");//85123A
-            $table->string(  "description");
-            $table->bigInteger(  "quantity");//2
-            $table->dateTime("invoiceDate");//12/1/2010 8:26
-            $table->float(  "unitPrice");//2.55
-            $table->bigInteger(  "customerID");//17850
-            $table->string(  "country");//United Kingdom
+            $table->string(  "invoiceNo")->default(NULL)->nullable();
+            $table->string(  "stockCode")->default(NULL)->nullable();
+            $table->string(  "description")->default(NULL)->nullable();
+            $table->string(  "quantity")->default(NULL)->nullable();
+            $table->string(  "invoiceDate")->default(NULL)->nullable();
+            $table->string(  "unitPrice")->default(NULL)->nullable();
+            $table->string(  "customerID")->default(NULL)->nullable();
+            $table->string(  "country")->default(NULL)->nullable();
             $table->timestamps();
         });
     }

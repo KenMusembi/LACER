@@ -15,28 +15,28 @@ use App\Http\Controllers;
 */
 
 //first we redirect the main  / route after login to excel content
-Route::redirect('/', '/login');
+Route::redirect('/', '/register');
 
 //route for getting viewing, importing and exporting excel content
 Route::get('/excelcontent', [Controllers\ExcelContentController::class, 'index'])
-->name('excelcontent.index');
+->middleware(['auth'])->name('excelcontent.index');
 
 //route for exporting excel contents
 Route::get('/excelcontent/export', [Controllers\ExcelContentController::class, 'export'])
-->name('excelcontent.export');
+->middleware(['auth'])->name('excelcontent.export');
 
 //route for importing excel contents
 Route::get('/excelcontent/import', [Controllers\ExcelContentController::class, 'show'])
-->name('excelcontent.show');
+->middleware(['auth'])->name('excelcontent.show');
 Route::post('/excelcontent/import', [Controllers\ExcelContentController::class, 'store'])
 ->name('excelcontent.store');
 
 //route for getting first 100 characters
-Route::get('/dashboard', [Controllers\DashboardController::class, 'index'])
-->name('dashboard');
+Route::get('/dashboard/{offset?}', [Controllers\DashboardController::class, 'index'])
+->middleware(['auth'])->name('dashboard');
 
 //route for paginating through marvel characters
 Route::get('/dashboard/offset/{offset?}', [Controllers\DashboardController::class, 'offset'])
-->name('dashboard');
+->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
