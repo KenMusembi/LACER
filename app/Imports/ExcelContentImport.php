@@ -66,6 +66,7 @@ ShouldQueue, withEvents
     //event to be fired after import job
     public static function afterimport(AfterImport $event){
         //send notifications 
+        return back()->withStatus("Excel file upload complete.");
     }
     
 
@@ -76,7 +77,8 @@ ShouldQueue, withEvents
     // }
 
     // public function onFailure(Failure ...$failure){
-        
+    //     //return failure
+    //     return back()->withStatus("Excel file not completely added.");
     // }
 
 }

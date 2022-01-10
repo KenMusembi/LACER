@@ -15,7 +15,7 @@ use App\Http\Controllers;
 */
 
 //first we redirect the main  / route after login to excel content
-Route::redirect('/', '/excelcontent');
+Route::redirect('/', '/login');
 
 //route for getting viewing, importing and exporting excel content
 Route::get('/excelcontent', [Controllers\ExcelContentController::class, 'index'])
