@@ -51,11 +51,11 @@ If you have any issues kindly reach out to me here or on email at kenmusembi21@g
 
   Marvel Characters                   
 :-----------------------------------------------------:
-![](https://github.com/KenMusembi/LACER/blob/main/screenshots/marvel_characters.jpg)
+![](https://github.com/KenMusembi/LACER/blob/main/screenshots/marvel_characters.png)
 
    Excel File Import       
 :-----------------------------------------------------:
-![](https://github.com/KenMusembi/LACER/blob/main/screenshots/excel_contents.jpg)
+![](https://github.com/KenMusembi/LACER/blob/main/screenshots/excel_contents.png)
 
 ## Contributing
 Pull requests are not welcome for now. 
