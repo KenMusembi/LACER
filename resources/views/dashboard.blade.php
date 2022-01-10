@@ -24,18 +24,23 @@
                             {{ $data['thumbnail']['path'] }}.{{ $data['thumbnail']['extension'] }}
                             " alt="{{$data['name']}}">{{$data['name']}}
                                 
-</td>                            
-<td class="border px-6 py-5">{{$data['description']}}<br>
-<a class="btn btn-primary float-right" role="button" href="http://marvel.com">Read More</a>
-</td>
-<td class="border px-6 py-2">
-                                
-</td>
+</td>                 
+    @if($data['description'] == '')
+        <td>No description of this character is available available.</td>
+    @else
+        <td class="border px-6 py-5">{{$data['description']}}<br>
+        <a class="btn btn-primary float-right" role="button" href="http://marvel.com">Read More</a>
+        </td>
+    @endif
+
                             </tr>
                        
                         @endforeach
     </tbody>
+   
 </table>  
+
+<a class="btn btn-primary float-right" role="button" href="/dashboard/offset/{{$offset}}">Load More</a><br>
 <a href="{{$marvel_characters_attribution['attributionHTML']}}">{{$marvel_characters_attribution['attributionText']}}    </a>        
                 </div>
                 
@@ -47,12 +52,3 @@
             
     
 </x-app-layout>
-  
-<script>
-    $(document).ready( function () {
-    $('#table_id').DataTable({
-        paging: true,
-        serverside:true
-    });
-} );
-</script>
