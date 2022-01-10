@@ -11,25 +11,22 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ExcelContentController extends Controller
-{
-    //
+{    
     public function index(){
         //return the main index view
         return view('excelcontent.index');
     }
 
-    //method to export excel data
+    //method to download the excel file
     public function export(){
-        //downloading the excel file
+        
         return [
             (new ExcelContentExport),
-        ];
-       // return new ExcelContentExport;        
+        ];               
     }
 
     
-
-    //method to import excel data
+    //method to show import page
     public function show(){
         //downloading the excel file
         return view('excelcontent.index');    
@@ -39,15 +36,9 @@ class ExcelContentController extends Controller
     public function store(Request $request){
         //downloading the excel file
         $file = $request
-        ->file('file')->store(
-            
-            'import'
-        );
-       // Storage::setVisibility('import/' . $file, 'private');
-        //dd($file);
-               
-    
+        ->file('file')->store('import');                      
         
+        //importing the file
         (new ExcelContentImport)->import($file);
 
         return back()->withStatus("Excel file added to Job, refresh this 

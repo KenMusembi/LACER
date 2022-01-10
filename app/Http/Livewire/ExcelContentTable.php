@@ -109,7 +109,7 @@ class ExcelContentTable extends Component
     //download template
     public function export_template()
     {
-        return Storage::download('stock_invoice_template.csv');
+        return Storage::download('/public/stock_invoice_template.csv');
     }
 
     

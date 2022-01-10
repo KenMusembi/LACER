@@ -14,6 +14,7 @@ class ExportJob implements ShouldQueue
 {
     use Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    //this method simply returns all the records in the db under the given file name
     public function handle()
     {
         (new ExcelContentExport)->store('stock_invoice.csv');

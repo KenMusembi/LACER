@@ -64,20 +64,8 @@ ShouldQueue, withEvents
     }
 
     //event to be fired after import job, does not work on jobs though
-    public static function afterimport(AfterImport $event){       
-        return back()->withStatus("Excel file upload complete.");
-    }
-    
-
-    //skip header row
-    // public function startRow(): int
-    // {
-    //     return 2;
+    // public static function afterimport(AfterImport $event){       
+    //     return back()->withStatus("Excel file upload complete.");
     // }
-
-    // public function onFailure(Failure ...$failure){
-    //     //return failure
-    //     return back()->withStatus("Excel file not completely added.");
-    // }
-
+        
 }
