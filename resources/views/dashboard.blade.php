@@ -24,15 +24,16 @@
                             {{ $data['thumbnail']['path'] }}.{{ $data['thumbnail']['extension'] }}
                             " alt="{{$data['name']}}">{{$data['name']}}
                                 
-</td>                 
+</td>      <td>           
     @if($data['description'] == '')
-        <td>No description of this character is available available.</td>
+        <p>
+        No description of this character is available available.
+        </p> 
     @else
-        <td class="border px-6 py-5">{{$data['description']}}<br>
-        <a class="btn btn-primary float-right" role="button" href="http://marvel.com">Read More</a>
-        </td>
+         class="border px-6 py-5">{{$data['description']}}<br>        
     @endif
-
+    <a class="btn btn-primary float-right" role="button" href="http://marvel.com">Read More</a>        
+    </td>
                             </tr>
                        
                         @endforeach

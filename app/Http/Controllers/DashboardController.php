@@ -35,6 +35,11 @@ class DashboardController extends Controller
      //next 100 characters
      public function offset($offset){        
         $offset= $offset + 10;
+
+        //incase we reach to the last page
+        if($offset == 156){
+            $offset = 0;
+        }
         
         //first 100 records    
         $marvel_characters = Http::get('https://gateway.marvel.com/v1/public/characters', 
