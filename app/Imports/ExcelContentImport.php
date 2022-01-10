@@ -46,7 +46,7 @@ ShouldQueue, withEvents
         ]);
     }
     
-    //
+    //rules for the file upload, haven't added any
     public function rules(): array{
         return [
            // '*.invoiceno' => ['string', 'unique:excel_contents,InvoiceNo']
@@ -63,9 +63,8 @@ ShouldQueue, withEvents
         return 5000;
     }
 
-    //event to be fired after import job
-    public static function afterimport(AfterImport $event){
-        //send notifications 
+    //event to be fired after import job, does not work on jobs though
+    public static function afterimport(AfterImport $event){       
         return back()->withStatus("Excel file upload complete.");
     }
     

@@ -25,6 +25,10 @@ Route::get('/excelcontent', [Controllers\ExcelContentController::class, 'index']
 Route::get('/excelcontent/export', [Controllers\ExcelContentController::class, 'export'])
 ->middleware(['auth'])->name('excelcontent.export');
 
+//route for a template
+Route::get('/excelcontent/export_template', [Controllers\ExcelContentController::class, 'export_template'])
+->middleware(['auth'])->name('excelcontent.export_template');
+
 //route for importing excel contents
 Route::get('/excelcontent/import', [Controllers\ExcelContentController::class, 'show'])
 ->middleware(['auth'])->name('excelcontent.show');

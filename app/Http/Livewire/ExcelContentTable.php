@@ -106,6 +106,12 @@ class ExcelContentTable extends Component
         }
     }
 
+    //download template
+    public function export_template()
+    {
+        return Storage::download('stock_invoice_template.csv');
+    }
+
     
     public function render()
     {        

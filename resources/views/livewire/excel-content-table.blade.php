@@ -20,9 +20,17 @@
     </div>
     @endif
          
-    <div class="mb-4 d-flex justify-content-between">
+ 
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    
+                <div class="container"> 
+          
+                <div class="mb-4 d-flex justify-content-between">
     <div>
-    <a wire:click="export" class="btn btn-outline-primary">Export</a>
+    <a wire:click="export" class="btn btn-primary">Export Existing Records</a>
 
     @if($exporting && !$exportFinished)
         <div class="d-inline" wire:poll="updateExportProgress">Exporting...please wait.</div>
@@ -33,12 +41,15 @@
     @endif
 </div>                 
     
+<button class="btn btn-secondary" wire:click="export_template">
+   Download a template for Import
+</button>
 
                         <div>
     <form wire:submit.prevent="import" enctype="multipart/form-data">
         @csrf
         <input type="file" wire:model="importFile" class="@error('import_file') is-invalid @enderror">
-        <button class="btn btn-outline-secondary">Import</button>
+        <button class="btn btn-primary">Import</button>
         @error('import_file')
             <span class="invalid-feedback" role="alert">{{ $message }}</span>
         @enderror
@@ -54,14 +65,6 @@
 </div>
                     </div>
         <!-- -->
-
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    
-                <div class="container"> 
-          
-  
  
                 <div class="row">
     

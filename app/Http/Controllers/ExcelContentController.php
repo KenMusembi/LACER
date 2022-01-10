@@ -21,8 +21,13 @@ class ExcelContentController extends Controller
     //method to export excel data
     public function export(){
         //downloading the excel file
-        return new ExcelContentExport;        
+        return [
+            (new ExcelContentExport),
+        ];
+       // return new ExcelContentExport;        
     }
+
+    
 
     //method to import excel data
     public function show(){
